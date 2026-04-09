@@ -10,6 +10,17 @@ model = joblib.load('model.joblib')   # Loading the saved model
 vectorizer = joblib.load('tf_idf.joblib')  # Loading the saved TF-IDF vectorizer 
 
 @app.route("/predict", methods=["POST"])
+def home():
+    return jsonify({
+        'message':Sentiment Analysis API is running !,
+        'endpoints':{
+            'health' : 'GET   /health',
+            'predict': 'POST  /predict'
+        }
+    })
+
+@app.route("/predict",methods=['POST'])
+
 def predict():
 
     data = request.get_json()  # Reading the incoming json data 
